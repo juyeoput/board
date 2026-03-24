@@ -14,6 +14,15 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody MemberRequestDto requestDto) {
+        String token = memberService.login(
+                requestDto.getUsername(),
+                requestDto.getPassword()
+        );
+        return ResponseEntity.ok(token);
+    }
+
     @PostMapping("/join")
     public ResponseEntity<Long> join(@RequestBody MemberRequestDto requestDto) { // 클라이언트가 보낸 JSON 데이터를 MemberRequestDto 객체로 자동 변환
         Long memberId = memberService.join(
