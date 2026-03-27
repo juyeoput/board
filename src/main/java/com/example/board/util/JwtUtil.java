@@ -10,16 +10,15 @@ import javax.crypto.SecretKey;
 import java.util.Date;
 
 @Component
-public class JwtUtil { //토큰 관련 작업
+public class JwtUtil {
 
     private final SecretKey key;
-    private final long expirationMs = 1000 * 60 * 60 * 24; // 24시간
+    private final long expirationMs = 1000 * 60 * 60 * 24; //24 Hours
 
     public JwtUtil(@Value("${jwt.secret}") String secret) {
         this.key = Keys.hmacShaKeyFor(secret.getBytes());
     }
 
-    // 토큰 생성
     public String generateToken(String username) {
         return Jwts.builder()
                 .subject(username)
@@ -29,12 +28,10 @@ public class JwtUtil { //토큰 관련 작업
                 .compact();
     }
 
-    //토큰에서 username 꺼내기
     public String getUsername(String token) {
         return getClaims(token).getSubject();
     }
 
-    //토큰 유효 검증
     public boolean validateToken(String token) {
         try {
             getClaims(token);

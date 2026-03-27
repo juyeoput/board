@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class JwtFilter extends OncePerRequestFilter { //매 요청마다 토큰 검증 후 Spring Security에게 notify
+public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
 
@@ -28,7 +28,7 @@ public class JwtFilter extends OncePerRequestFilter { //매 요청마다 토큰 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
 
-            if (jwtUtil.validateToken(token)) { //검증 메소드 호출 및 성공 여부
+            if (jwtUtil.validateToken(token)) {
                 String username = jwtUtil.getUsername(token);
 
                 UsernamePasswordAuthenticationToken authentication =

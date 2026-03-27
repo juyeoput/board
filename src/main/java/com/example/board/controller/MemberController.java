@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController // @Controller + @ResponseBody
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/members")
 public class MemberController {
@@ -25,7 +25,7 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public ResponseEntity<Long> join(@RequestBody MemberRequestDto requestDto) { // 클라이언트가 보낸 JSON 데이터를 MemberRequestDto 객체로 자동 변환
+    public ResponseEntity<Long> join(@RequestBody MemberRequestDto requestDto) {
         Long memberId = memberService.join(
                 requestDto.getUsername(),
                 requestDto.getPassword(),

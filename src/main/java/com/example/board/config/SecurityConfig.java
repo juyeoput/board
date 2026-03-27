@@ -24,7 +24,7 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .securityContext(context -> context.requireExplicitSave(false)) // Spring Security 6+에서 SecurityContextHolder 자동 저장을 위해 필요
+            .securityContext(context -> context.requireExplicitSave(false))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/members/join", "/api/members/login").permitAll()
                 .anyRequest().authenticated()
