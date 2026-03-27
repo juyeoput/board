@@ -27,7 +27,7 @@ public class Member {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    @PrePersist // DB 저장되기 직전에 자동 실행
+    @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
     }

@@ -20,10 +20,10 @@ public class MemberService {
     @Transactional
     public Long join(String username, String password, String email) {
         if (memberRepository.existsByUsername(username)) {
-            throw new IllegalArgumentException("이미 사용중인 아이디입니다.");
+            throw new IllegalArgumentException("Username already exists.");
         }
         if (memberRepository.existsByEmail(email)) {
-            throw new IllegalArgumentException("이미 사용중인 이메일입니다.");
+            throw new IllegalArgumentException("Email already exists.");
         }
 
         String encodedPassword = passwordEncoder.encode(password);
@@ -34,10 +34,10 @@ public class MemberService {
 
     public String login(String username, String password) {
         Member member = memberRepository.findByUsername(username)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 아이디입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("Member not found."));
 
         if (!passwordEncoder.matches(password, member.getPassword())) {
-            throw new IllegalArgumentException("비밀번호가 틀렸습니다.");
+            throw new IllegalArgumentException("Invalid password.");
         }
 
         return jwtUtil.generateToken(username);

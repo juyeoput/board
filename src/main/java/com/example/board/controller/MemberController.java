@@ -15,6 +15,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/login")
+
     public ResponseEntity<String> login(@RequestBody MemberRequestDto requestDto) {
         String token = memberService.login(
                 requestDto.getUsername(),
