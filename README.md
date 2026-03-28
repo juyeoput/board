@@ -63,3 +63,6 @@ src/main/java/com/example/board
 |----------|-------------|
 | DB_PASSWORD | MySQL database password |
 | JWT_SECRET | JWT signing secret key (min 256-bit) |
+
+## API Documentation
+Swagger UI: `http://localhost:8080/swagger-ui/index.html`
